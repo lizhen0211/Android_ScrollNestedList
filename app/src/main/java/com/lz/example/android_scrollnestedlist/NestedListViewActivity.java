@@ -19,14 +19,16 @@ public class NestedListViewActivity extends Activity {
         listOne.setDrawingCacheEnabled(false);
         NestedListViewAdapter listOneAdapter = new NestedListViewAdapter(this, getData());
         listOne.setAdapter(listOneAdapter);
-        setListViewHeight(listOneAdapter.getDatas().size(), listOne);
+        ListUtil.setListViewHeight(listOneAdapter.getDatas().size()
+                , (int) getResources().getDimension(R.dimen.list_item_height), listOne);
 
         ListView listTwo = (ListView) findViewById(R.id.listTwo);
         listTwo.setScrollingCacheEnabled(false);
         listTwo.setDrawingCacheEnabled(false);
         NestedListViewAdapter listTwoAdapter = new NestedListViewAdapter(this, getData());
         listTwo.setAdapter(listTwoAdapter);
-        setListViewHeight(listTwoAdapter.getDatas().size(), listTwo);
+        ListUtil.setListViewHeight(listTwoAdapter.getDatas().size()
+                , (int) getResources().getDimension(R.dimen.list_item_height), listTwo);
     }
 
     private List<String> getData() {
@@ -35,14 +37,5 @@ public class NestedListViewActivity extends Activity {
             list.add(String.valueOf(i));
         }
         return list;
-    }
-
-    private void setListViewHeight(int size, ListView listView) {
-
-        ViewGroup.LayoutParams layoutParams = listView.getLayoutParams();
-        layoutParams.height = size
-                * (int) getResources().getDimension(R.dimen.list_item_height)
-                + (size - 1)
-                * listView.getDividerHeight();
     }
 }

@@ -17,4 +17,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, NestedListViewActivity.class);
         startActivity(intent);
     }
+
+    public void onNestedExpandListView(View view) {
+        Intent intent = new Intent(MainActivity.this, NestedExpandListViewActivity.class);
+        startActivity(intent);
+    }
 }
