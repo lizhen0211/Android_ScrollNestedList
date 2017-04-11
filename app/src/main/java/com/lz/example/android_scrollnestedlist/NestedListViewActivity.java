@@ -22,6 +22,8 @@ public class NestedListViewActivity extends Activity {
         setListViewHeight(listOneAdapter.getDatas().size(), listOne);
 
         ListView listTwo = (ListView) findViewById(R.id.listTwo);
+        listTwo.setScrollingCacheEnabled(false);
+        listTwo.setDrawingCacheEnabled(false);
         NestedListViewAdapter listTwoAdapter = new NestedListViewAdapter(this, getData());
         listTwo.setAdapter(listTwoAdapter);
         setListViewHeight(listTwoAdapter.getDatas().size(), listTwo);
