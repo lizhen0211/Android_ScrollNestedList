@@ -73,8 +73,8 @@ public class NestedExpandListViewActivity extends Activity {
         public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
             //手动展开与关闭groupItem
             ListUtil.disposeGroupStatus(groupPosition, lastOpenGroupPostion, expandableListView);
-
-           /* int dividerHeight = expandableListView.getDividerHeight();
+            //ListUtil.setListViewHeight(expandListViewAdapter.getGroupCount(), listItemHeight, expandableListView);
+            /*int dividerHeight = expandableListView.getDividerHeight();
             int height = (dividerHeight + listItemHeight) * groupPosition;
             int scrollTo = height + titleView.getHeight() + titleDividerView.getHeight();
             //设置滚到位置
@@ -132,6 +132,26 @@ public class NestedExpandListViewActivity extends Activity {
         dataEntries.add(dataEntry3);
         dataEntries.add(dataEntry4);
         dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry5);
+//        dataEntries.add(dataEntry1);
+
         return dataEntries;
     }
 }

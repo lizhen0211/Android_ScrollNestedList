@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title_divider"
                 android:divider="@color/colorAccent"
-                android:dividerHeight="10px" />
+                android:dividerHeight="5dp" />
         </RelativeLayout>
 
     </ScrollView>
