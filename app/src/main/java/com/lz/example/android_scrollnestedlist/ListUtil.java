@@ -12,11 +12,33 @@ import android.widget.ListView;
 
 public class ListUtil {
 
+    /**
+     * 设置列表高度
+     * @param size
+     * @param itemHeight
+     * @param listView
+     */
     public static void setListViewHeight(int size, int itemHeight, ListView listView) {
 
         ViewGroup.LayoutParams layoutParams = listView.getLayoutParams();
         layoutParams.height = size * itemHeight
                 + (size - 1) * listView.getDividerHeight();
+    }
+
+    /**
+     * 设置可扩展列表高度
+     * @param groupSize
+     * @param groupItemHeight
+     * @param childSize
+     * @param childItemHeight
+     * @param listView
+     */
+    public static void setExpandableListViewHeight(int groupSize, int groupItemHeight, int childSize, int childItemHeight, ListView listView) {
+
+        ViewGroup.LayoutParams layoutParams = listView.getLayoutParams();
+        layoutParams.height = groupSize * groupItemHeight
+                + (groupSize - 1) * listView.getDividerHeight()
+                + childSize * childItemHeight + (childSize + 1) * listView.getDividerHeight();
     }
 
     /**

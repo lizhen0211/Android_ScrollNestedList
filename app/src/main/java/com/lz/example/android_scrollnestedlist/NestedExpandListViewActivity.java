@@ -20,7 +20,9 @@ public class NestedExpandListViewActivity extends Activity {
 
     private View titleDividerView;
 
-    private int listItemHeight;
+    private int groupItemHeight;
+
+    private int childItemHeight;
 
     private int lastOpenGroupPostion = -1;
 
@@ -43,11 +45,12 @@ public class NestedExpandListViewActivity extends Activity {
         expandableListView.setOnGroupCollapseListener(onGroupCollapseListener);
         expandableListView.setOnGroupClickListener(onGroupClickListener);
 
-        expandListViewAdapter = new NestedExpandListViewAdapter(this, getData());
+        expandListViewAdapter = new NestedExpandListViewAdapter(this, getLessData());
         expandableListView.setAdapter(expandListViewAdapter);
-        listItemHeight = (int) getResources().getDimension(R.dimen.expand_list_item_height);
+        groupItemHeight = (int) getResources().getDimension(R.dimen.expand_list_group_item_height);
+        childItemHeight = (int) getResources().getDimension(R.dimen.expand_list_child_item_height);
         ListUtil.setListViewHeight(expandListViewAdapter.getGroupCount()
-                , (int) getResources().getDimension(R.dimen.expand_list_item_height), expandableListView);
+                , (int) getResources().getDimension(R.dimen.expand_list_group_item_height), expandableListView);
     }
 
     private ExpandableListView.OnGroupExpandListener onGroupExpandListener = new ExpandableListView.OnGroupExpandListener() {
@@ -56,7 +59,11 @@ public class NestedExpandListViewActivity extends Activity {
             lastOpenGroupPostion = groupPosition;
             //展开时，listview 高度重新计算后，高度错误。
             //需要再次设置正确的listview高度。
-            ListUtil.setListViewHeight(expandListViewAdapter.getGroupCount(), listItemHeight, expandableListView);
+
+            //expandableListView.getCount()等于groupCount+展开的childCount
+            //所以要分开计算列表group的高度和展开的child高度
+            ListUtil.setExpandableListViewHeight(expandListViewAdapter.getGroupCount(), groupItemHeight,
+                    expandListViewAdapter.getChildrenCount(groupPosition), childItemHeight, expandableListView);
         }
     };
 
@@ -64,7 +71,7 @@ public class NestedExpandListViewActivity extends Activity {
         @Override
         public void onGroupCollapse(int groupPosition) {
             lastOpenGroupPostion = -1;
-            ListUtil.setListViewHeight(expandListViewAdapter.getGroupCount(), listItemHeight, expandableListView);
+            ListUtil.setListViewHeight(expandListViewAdapter.getGroupCount(), groupItemHeight, expandableListView);
         }
     };
 
@@ -73,19 +80,19 @@ public class NestedExpandListViewActivity extends Activity {
         public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
             //手动展开与关闭groupItem
             ListUtil.disposeGroupStatus(groupPosition, lastOpenGroupPostion, expandableListView);
-            //ListUtil.setListViewHeight(expandListViewAdapter.getGroupCount(), listItemHeight, expandableListView);
-            /*int dividerHeight = expandableListView.getDividerHeight();
-            int height = (dividerHeight + listItemHeight) * groupPosition;
+
+            int dividerHeight = expandableListView.getDividerHeight();
+            int height = (dividerHeight + groupItemHeight) * groupPosition;
             int scrollTo = height + titleView.getHeight() + titleDividerView.getHeight();
             //设置滚到位置
-            ListUtil.scrollToTop(scrollView, expandableListView, scrollTo);*/
+            ListUtil.scrollToTop(scrollView, expandableListView, scrollTo);
 
             // 返回true 展开与关闭要自己处理；返回false展开关闭由系统处理
             return true;
         }
     };
 
-    private List<NestedExpandListViewAdapter.DataEntry> getData() {
+    private List<NestedExpandListViewAdapter.DataEntry> getLessData() {
         List<NestedExpandListViewAdapter.DataEntry> dataEntries = new ArrayList<>();
         NestedExpandListViewAdapter.DataEntry dataEntry1 = new NestedExpandListViewAdapter.DataEntry();
         List<String> childDatas1 = new ArrayList<>();
@@ -132,25 +139,75 @@ public class NestedExpandListViewActivity extends Activity {
         dataEntries.add(dataEntry3);
         dataEntries.add(dataEntry4);
         dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry5);
-//        dataEntries.add(dataEntry1);
+        return dataEntries;
+    }
+
+    private List<NestedExpandListViewAdapter.DataEntry> getMoreData() {
+        List<NestedExpandListViewAdapter.DataEntry> dataEntries = new ArrayList<>();
+        NestedExpandListViewAdapter.DataEntry dataEntry1 = new NestedExpandListViewAdapter.DataEntry();
+        List<String> childDatas1 = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            childDatas1.add(String.valueOf(i));
+        }
+        dataEntry1.setLable("one");
+        dataEntry1.setChildData(childDatas1);
+
+        NestedExpandListViewAdapter.DataEntry dataEntry2 = new NestedExpandListViewAdapter.DataEntry();
+        List<String> childDatas2 = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            childDatas2.add(String.valueOf(i));
+        }
+        dataEntry2.setLable("two");
+        dataEntry2.setChildData(childDatas2);
+
+        NestedExpandListViewAdapter.DataEntry dataEntry3 = new NestedExpandListViewAdapter.DataEntry();
+        List<String> childDatas3 = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            childDatas3.add(String.valueOf(i));
+        }
+        dataEntry3.setLable("three");
+        dataEntry3.setChildData(childDatas3);
+
+        NestedExpandListViewAdapter.DataEntry dataEntry4 = new NestedExpandListViewAdapter.DataEntry();
+        List<String> childDatas4 = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            childDatas4.add(String.valueOf(i));
+        }
+        dataEntry4.setLable("four");
+        dataEntry4.setChildData(childDatas4);
+
+        NestedExpandListViewAdapter.DataEntry dataEntry5 = new NestedExpandListViewAdapter.DataEntry();
+        List<String> childDatas5 = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            childDatas5.add(String.valueOf(i));
+        }
+        dataEntry5.setLable("five");
+        dataEntry5.setChildData(childDatas5);
+
+        dataEntries.add(dataEntry1);
+        dataEntries.add(dataEntry2);
+        dataEntries.add(dataEntry3);
+        dataEntries.add(dataEntry4);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry5);
+        dataEntries.add(dataEntry1);
 
         return dataEntries;
     }
