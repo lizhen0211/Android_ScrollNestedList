@@ -16,7 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".NestedListViewActivity" />
-        <activity android:name=".NestedExpandListViewActivity"></activity>
+        <activity android:name=".NestedExpandListViewActivity" />
+        <activity android:name=".NestedScrollInsideScroll" />
+        <activity android:name=".ListViewActivity"></activity>
     </application>
 
 </manifest>

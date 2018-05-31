@@ -22,4 +22,14 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, NestedExpandListViewActivity.class);
         startActivity(intent);
     }
+
+    public void onInSideScrollview(View view) {
+        Intent intent = new Intent(MainActivity.this, NestedScrollInsideScroll.class);
+        startActivity(intent);
+    }
+
+    public void onListitemNestNestedScroll(View view) {
+        Intent intent = new Intent(MainActivity.this, ListViewActivity.class);
+        startActivity(intent);
+    }
 }
