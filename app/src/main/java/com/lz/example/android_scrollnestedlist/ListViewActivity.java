@@ -21,7 +21,8 @@ public class ListViewActivity extends Activity {
         ListView listView = (ListView) findViewById(R.id.list_view);
 
         setDummyData();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_list_view, R.id.text_view, strings);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_list_view, R.id.text_view, strings);
+        ListviewAdapter adapter = new ListviewAdapter(strings);
         listView.setAdapter(adapter);
 
     }
