@@ -32,4 +32,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, ListViewActivity.class);
         startActivity(intent);
     }
+
+    public void onNestedScrollViewAndRecycleview(View view) {
+        Intent intent = new Intent(MainActivity.this, NestedScrollViewAndRecycleview.class);
+        startActivity(intent);
+    }
 }

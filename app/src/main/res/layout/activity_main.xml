@@ -39,6 +39,15 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:onClick="onListitemNestNestedScroll"
-        android:text="listview嵌套NestedScrollView" />
+        android:text="ListviewItem使用NestedScrollview" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:onClick="onNestedScrollViewAndRecycleview"
+        android:text="NestedScrollView嵌套Recycleview" />
 
 </LinearLayout>

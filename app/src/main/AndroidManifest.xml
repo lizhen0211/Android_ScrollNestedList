@@ -18,7 +18,8 @@
         <activity android:name=".NestedListViewActivity" />
         <activity android:name=".NestedExpandListViewActivity" />
         <activity android:name=".NestedScrollInsideScroll" />
-        <activity android:name=".ListViewActivity"></activity>
+        <activity android:name=".ListViewActivity" />
+        <activity android:name=".NestedScrollViewAndRecycleview"/>
     </application>
 
 </manifest>
