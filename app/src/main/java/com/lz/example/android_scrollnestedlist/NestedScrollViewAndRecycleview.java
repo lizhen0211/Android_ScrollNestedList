@@ -16,13 +16,29 @@ public class NestedScrollViewAndRecycleview extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nested_scrollview_and_recycleview);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.nested_recycleview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView recyclerViewFirst = (RecyclerView) findViewById(R.id.first_nested_recycleview);
+        RecyclerView recyclerViewSecond = (RecyclerView) findViewById(R.id.second_nested_recycleview);
+        RecyclerView recyclerViewThird = (RecyclerView) findViewById(R.id.third_nested_recycleview);
+
         setDummyData();
-        ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(strings);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setAdapter(adapter);
+
+        recyclerViewFirst.setLayoutManager(new LinearLayoutManager(this));
+        ListRecyclerViewAdapter adapterFirst = new ListRecyclerViewAdapter(strings);
+        recyclerViewFirst.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerViewFirst.setNestedScrollingEnabled(false);
+        recyclerViewFirst.setAdapter(adapterFirst);
+
+        recyclerViewSecond.setLayoutManager(new LinearLayoutManager(this));
+        ListRecyclerViewAdapter adapterSecond = new ListRecyclerViewAdapter(strings);
+        recyclerViewSecond.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerViewSecond.setNestedScrollingEnabled(false);
+        recyclerViewSecond.setAdapter(adapterSecond);
+
+        recyclerViewThird.setLayoutManager(new LinearLayoutManager(this));
+        ListRecyclerViewAdapter adapterThird = new ListRecyclerViewAdapter(strings);
+        recyclerViewThird.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerViewThird.setNestedScrollingEnabled(false);
+        recyclerViewThird.setAdapter(adapterThird);
     }
 
     private void setDummyData() {
