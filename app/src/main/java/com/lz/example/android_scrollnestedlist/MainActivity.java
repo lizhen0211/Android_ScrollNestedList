@@ -37,4 +37,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, NestedScrollViewAndRecycleview.class);
         startActivity(intent);
     }
+
+    public void onSimpleNestedScrollParent(View view) {
+        Intent intent = new Intent(MainActivity.this, SimpleNestedScrollParentActivity.class);
+        startActivity(intent);
+    }
 }
