@@ -42,4 +42,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, SimpleNestedScrollParentActivity.class);
         startActivity(intent);
     }
+
+    public void onHideHeader(View view) {
+        Intent intent = new Intent(MainActivity.this, HideHeaderActivity.class);
+        startActivity(intent);
+    }
 }

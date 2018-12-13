@@ -20,7 +20,8 @@
         <activity android:name=".NestedScrollInsideScroll" />
         <activity android:name=".ListViewActivity" />
         <activity android:name=".NestedScrollViewAndRecycleview" />
-        <activity android:name=".SimpleNestedScrollParentActivity"></activity>
+        <activity android:name=".SimpleNestedScrollParentActivity" />
+        <activity android:name=".HideHeaderActivity"></activity>
     </application>
 
 </manifest>
